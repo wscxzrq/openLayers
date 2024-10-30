@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>加载显示天地图</title>
+    <link href="../../css/ol.css" rel="stylesheet" type="text/css" />
+    <script src="../../libs/ol5/ol.js" type="text/javascript"></script>
+    <style type="text/css">
+      #mapCon {
+        width: 99%;
+        height: 95%;
+        position: absolute;
+      }
+    </style>
+  </head>
+  <body onload="init()">
+    <div id="mapCon"></div>
+    <script>
+      function init() {
+        var map = new ol.Map({
+          target: "mapCon",
+          layers: [
+            new ol.layer.Tile({
+              title: "天地图矢量图层",
+              source: new ol.source.XYZ({
+                url: "http://t0.tianditu.com/DataServer?T=vec_w&x={x}&y={y}&l={z}&tk=c3e13f43d5f380c070aaff0b2920fae8",
+                attributions:'天地图属性描述',
+                wrapX: true
+              })
+            }),
+            new ol.layer.Tile({
+              title: "天地图矢量注记图层",
+              source: new ol.source.XYZ({
+                url: "http://t0.tianditu.com/DataServer?T=cva_w&x={x}&y={y}&l={z}&tk=c3e13f43d5f380c070aaff0b2920fae8",
+                wrapX: true
+              }),
+              // 预加载所有级别的图层，避免拖动时出现瓦片空白
+              preload:Infinity
+            })
+          ],
+          view:new ol.View({
+            //地图初始中心点
+            center: [0, 0],
+            //地图初始显示级别
+            zoom: 3,
+          })
+        })
+      }
+    </script>
+  </body>
+</html>

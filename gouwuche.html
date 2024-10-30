@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>购物车页面</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      ul li {
+        list-style: none;
+      }
+      body {
+        font-family: Arial, sans-serif;
+      }
+
+      .header {
+        height: 100px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background-color: #333;
+        color: #fff;
+        text-align: center;
+        padding: 10px 0;
+      }
+
+      .header .logo {
+        margin-left: 20px;
+      }
+      .logo-container {
+        display: flex;
+        align-items: center;
+      }
+      .header .logo img {
+        border-radius: 10px;
+        margin-right: 10px;
+      }
+      .header .nav {
+        margin-right: 20px;
+      }
+
+      .header .nav a {
+        color: #fff;
+        margin: 0 10px;
+        text-decoration: none;
+      }
+
+      .content {
+        display: flex;
+        padding: 20px;
+      }
+
+      .cart-details {
+        flex: 5;
+        padding: 10px 20px;
+        border: 1px solid #ccc;
+      }
+      .table-headle ul {
+        display: flex;
+        border-bottom: 1px solid #ccc;
+      }
+      .table-headle ul li {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+      }
+      .unitPrice {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+      }
+      .quantity-box {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .subtotal-box {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .cart-summary {
+        flex: 1;
+        background-color: #f3f3f3;
+        padding: 20px;
+        border: 1px solid #ccc;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .card-item {
+        display: flex;
+        border-bottom: 1px solid #ccc;
+      }
+      .card-item div {
+        flex: 1;
+      }
+      .card-item-img {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 20px 0px;
+      }
+      .card-item-img img {
+        width: 150px;
+        height: 150px;
+        margin-bottom: 10px;
+        border-radius: 10px;
+      }
+
+      .card-item button,
+      .card-item .quantity {
+        margin: 0 5px;
+      }
+
+      .footer {
+        height: 100px;
+        background-color: #333;
+        text-align: center;
+        padding: 10px 0;
+        padding: 10px;
+        color: white;
+      }
+
+      /* 基本按钮样式 */
+      .el-button {
+        display: inline-block;
+        font-size: 14px;
+        color: #fff;
+        background-color: #409eff;
+        padding: 8px 20px;
+        border: 1px solid #409eff;
+        border-radius: 4px;
+        cursor: pointer;
+        outline: none;
+        transition: background-color 0.2s, border-color 0.2s;
+      }
+
+      /* 悬停状态 */
+      .el-button:hover {
+        background-color: #66b1ff;
+        border-color: #66b1ff;
+      }
+
+      /* 按下状态 */
+      .el-button:active {
+        background-color: #3a8ee6;
+        border-color: #3a8ee6;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 页头区 -->
+    <header class="header">
+      <div class="logo">
+        <div class="logo-container">
+          <img
+            src="https://bpic.wotucdn.com/23/90/15/23901551-b8321f60f68b278ea1db3cd994356437-1.jpg%21/fw/1024/quality/91/unsharp/true/compress/true/watermark/url/bG9nby53YXRlci52NS5wbmc=/repeat/true/align/center/format/jpg"
+            width="50"
+            height="50"
+            alt=""
+          />
+          <span>喵喵购物网</span>
+        </div>
+      </div>
+      <nav class="nav">
+        <a href="#">首页</a>
+        <a href="#">已经买到宝贝</a>
+        <a href="#">收藏夹</a>
+        <a href="#">商品分类</a>
+        <a href="#">卖家中心</a>
+        <a href="#">商品</a>
+        <a href="#">联系我们</a>
+      </nav>
+    </header>
+
+    <!-- 内容区 -->
+    <main class="content">
+      <!-- 购物车详情区 -->
+      <section class="cart-details">
+        <h2>购物车物品清单</h2>
+        <br />
+        <div class="table-headle">
+          <ul>
+            <li>商品</li>
+            <li>单价</li>
+            <li>数量</li>
+            <li>小计</li>
+          </ul>
+        </div>
+        <div>
+          <div class="card-item" data-number="100">
+            <div class="card-item-img">
+              <img
+                src="https://img.alicdn.com/bao/uploaded///asearch.alic…o/uploaded/O1CN01D40QTV1KJ59P0YNes_!!59101142.jpg"
+                alt="1 号商品"
+              />
+              <p>
+                ITGDLEDY原创小众女生可爱包包马鞍包精致手提斜挎包小包生日礼物
+              </p>
+            </div>
+            <div class="unitPrice">
+              <p>¥100</p>
+            </div>
+            <div class="quantity-box">
+              <button class="des el-button">减少</button>
+              <input type="number" class="quantity" value="1" min="0" />
+              <button class="inc el-button">增加</button>
+            </div>
+            <div class="subtotal-box">
+              <span class="subtotal">小计: ¥100</span>
+            </div>
+          </div>
+          <div class="card-item" data-number="100">
+            <div class="card-item-img">
+              <img
+                src="https://img.alicdn.com/bao/uploaded/i3/3029794004/O1CN01dEJDym1fRspyITvcf_!!3029794004.jpg"
+                alt="2 号商品"
+              />
+              <p>
+                ITGDLEDY原创小众女生可爱包包马鞍包精致手提斜挎包小包生日礼物
+              </p>
+            </div>
+            <div class="unitPrice">
+              <p>¥100</p>
+            </div>
+            <div class="quantity-box">
+              <button class="des el-button">减少</button>
+              <input type="number" class="quantity" value="1" min="0" />
+              <button class="inc el-button">增加</button>
+            </div>
+            <div class="subtotal-box">
+              <span class="subtotal">小计: ¥100</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 购物车概览区 -->
+      <aside class="cart-summary">
+        <h2>购物车详情</h2>
+        <p>商品总数量: <span id="total">2</span></p>
+        <p>总计: ¥<span id="price">300</span></p>
+      </aside>
+    </main>
+
+    <!-- 页脚区 -->
+    <footer class="footer">
+      <p>公司信息 | 地址：北京市某区某街道</p>
+      <p>第三方备案平台：x网xxxxxxx</p>
+      <p><a href="#">www.maomaodianshang.com</a> &nbsp;网站所有</p>
+    </footer>
+  </body>
+  <script>
+    try {
+      new Function("(a = 0) => a");
+    } catch (e) {
+      // 如果不支持 ES6，弹出提示
+      alert("您的浏览器不支持此页面所需的功能，请使用现代浏览器（例如 Chrome、Firefox、Edge 等）以获得最佳体验。");
+    }
+    
+    class ShoppingCart {
+      constructor(card, total, price) {
+        this.cardItems = document.querySelectorAll(card);
+        this.totalNumber = document.querySelector(total);
+        this.totalPriceElement = document.querySelector(price);
+        this.init();
+      }
+
+      // 初始化方法，绑定事件监听器并初始化总数和总价
+      init() {
+        for (let i = 0; i < this.cardItems.length; i++) {
+          const desButton = this.cardItems[i].querySelector(".des");
+          const incButton = this.cardItems[i].querySelector(".inc");
+          const quantityInput = this.cardItems[i].querySelector(".quantity");
+
+          desButton.addEventListener("click", () =>
+            this.decreaseHandle(this.cardItems[i])
+          );
+          incButton.addEventListener("click", () =>
+            this.increaseHandle(this.cardItems[i])
+          );
+          quantityInput.addEventListener("input", () =>
+            this.updateQuantity(this.cardItems[i], quantityInput)
+          );
+        }
+        this.updateCart(); // 初始化总数和总价
+      }
+
+      // 更新购物车的总数量和总价格
+      updateCart() {
+        let totalQuantity = 0;
+        let totalPrice = 0;
+        for (let i = 0; i < this.cardItems.length; i++) {
+          const quantity = parseInt(this.cardItems[i].querySelector(".quantity").value) || 0;
+          const price = parseFloat(this.cardItems[i].dataset.number);
+
+          // 更新小计
+          this.cardItems[i].querySelector(".subtotal").innerText = `¥${(
+            quantity * price
+          ).toFixed(2)}`;
+
+          totalQuantity += quantity;
+          totalPrice += quantity * price;
+        }
+        this.totalNumber.innerText = totalQuantity + "件";
+        this.totalPriceElement.innerText = totalPrice.toFixed(2);
+      }
+
+      // 增加数量
+      increaseHandle(item) {
+        const quantityInput = item.querySelector(".quantity");
+        quantityInput.value = parseInt(quantityInput.value) + 1;
+        this.updateCart();
+      }
+
+      // 减少数量
+      decreaseHandle(item) {
+        const quantityInput = item.querySelector(".quantity");
+        const currentValue = parseInt(quantityInput.value);
+        if (currentValue > 0) {
+          quantityInput.value = currentValue - 1;
+          this.updateCart();
+        }
+      }
+
+      // 更新数量
+      updateQuantity(item, quantityInput) {
+        if (quantityInput.value < 0) {
+          quantityInput.value = 0;
+        }
+        this.updateCart();
+      }
+    }
+
+    // 初始化购物车对象
+    new ShoppingCart(".card-item", "#total", "#price");
+  </script>
+</html>
