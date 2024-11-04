@@ -62,7 +62,6 @@
         var haikou = ol.proj.fromLonLat([110.20, 20.02]);
         // 获取反弹值
         function bounce(t) {
-          console.log('t',t)
             var s = 7.5625, p = 2.75, l;
             if (t < (1 / p)) {
                 l = s * t * t;
@@ -80,7 +79,6 @@
                     }
                 }
             }
-            // console.log('l',l)
             return l;
         }
         // 获取弹性伸缩值
