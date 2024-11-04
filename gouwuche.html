@@ -22,10 +22,10 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        background-color: #333;
         color: #fff;
         text-align: center;
         padding: 10px 0;
+        background-color: #4a90e2;
       }
 
       .header .logo {
@@ -38,6 +38,7 @@
       .header .logo img {
         border-radius: 10px;
         margin-right: 10px;
+        border: 2px solid #fff;
       }
       .header .nav {
         margin-right: 20px;
@@ -47,21 +48,32 @@
         color: #fff;
         margin: 0 10px;
         text-decoration: none;
+        transition: color 0.3s;
       }
-
+      .header .nav a:hover {
+        color: #d3e2f3;
+      }
       .content {
+        background-color: #f9f9f9;
+        padding: 30px;
+        gap: 20px;
         display: flex;
-        padding: 20px;
       }
 
       .cart-details {
         flex: 5;
         padding: 10px 20px;
         border: 1px solid #ccc;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
       }
       .table-headle ul {
         display: flex;
-        border-bottom: 1px solid #ccc;
+        border-bottom: 2px solid #ddd;
+        padding: 10px 0;
+        font-weight: bold;
+        background-color: #eaeef2;
       }
       .table-headle ul li {
         flex: 1;
@@ -86,18 +98,41 @@
       }
       .cart-summary {
         flex: 1;
-        background-color: #f3f3f3;
         padding: 20px;
         border: 1px solid #ccc;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        background-color: #fdfdfd;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        text-align: center;
+      }
+      .cart-summary h2 {
+        color: #4a90e2;
+      }
+
+      .cart-summary p {
+        font-weight: bold;
+        color: #666;
       }
 
       .card-item {
         display: flex;
         border-bottom: 1px solid #ccc;
+        padding: 15px;
+        border-bottom: 1px solid #ddd;
+        transition: background-color 0.3s;
+      }
+      .card-item:hover {
+        background-color: #f4f8fb;
+      }
+
+      .unitPrice,
+      .quantity-box,
+      .subtotal-box {
+        color: #333;
       }
       .card-item div {
         flex: 1;
@@ -114,6 +149,7 @@
         height: 150px;
         margin-bottom: 10px;
         border-radius: 10px;
+        border: 1px solid #e0e0e0;
       }
 
       .card-item button,
@@ -122,12 +158,12 @@
       }
 
       .footer {
+        color: #e0e0e0;
         height: 100px;
         background-color: #333;
         text-align: center;
         padding: 10px 0;
         padding: 10px;
-        color: white;
       }
 
       /* 基本按钮样式 */
@@ -264,9 +300,11 @@
       new Function("(a = 0) => a");
     } catch (e) {
       // 如果不支持 ES6，弹出提示
-      alert("您的浏览器不支持此页面所需的功能，请使用现代浏览器（例如 Chrome、Firefox、Edge 等）以获得最佳体验。");
+      alert(
+        "您的浏览器不支持此页面所需的功能，请使用现代浏览器（例如 Chrome、Firefox、Edge 等）以获得最佳体验。"
+      );
     }
-    
+
     class ShoppingCart {
       constructor(card, total, price) {
         this.cardItems = document.querySelectorAll(card);
@@ -300,7 +338,8 @@
         let totalQuantity = 0;
         let totalPrice = 0;
         for (let i = 0; i < this.cardItems.length; i++) {
-          const quantity = parseInt(this.cardItems[i].querySelector(".quantity").value) || 0;
+          const quantity =
+            parseInt(this.cardItems[i].querySelector(".quantity").value) || 0;
           const price = parseFloat(this.cardItems[i].dataset.number);
 
           // 更新小计
