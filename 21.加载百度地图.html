@@ -22,17 +22,27 @@
       for (var i = 0; i < 19; i++) {
         resolutions[i] = Math.pow(2, 18 - i);
       }
+      /**
+       * tilegrid 是一个网格对象定义了瓦片地图的分辨率与原点
+       * origin 原点
+       * resolutions 分辨率
+      */
       var tilegrid = new ol.tilegrid.TileGrid({
         origin: [0, 0],
         resolutions: resolutions,
       });
       //拼接百度地图出图地址
+      // baidu_source 是一个 TileImage 瓦片图层的源数据对象，用于定义地图瓦片的请求方式
       var baidu_source = new ol.source.TileImage({
         //设置坐标参考系
         projection: projection,
         //设置分辨率
         tileGrid: tilegrid,
-        //出图基地址
+        //出图基地址  
+        /**
+         * 返回瓦片的 URL，用于请求百度地图的瓦片数据
+         * @param  {object} tileCoord 参数包含了当前瓦片的缩放级别 (z)、列 (x)、行 (y)。
+        */
         tileUrlFunction: function (tileCoord, pixelRatio, proj) {
           if (!tileCoord) {
             return "";
@@ -40,7 +50,7 @@
           var z = tileCoord[0];
           var x = tileCoord[1];
           var y = tileCoord[2];
-
+          // 百度地图的瓦片请求 URL 需要将 x 和 y 转换为非负值，所以如果 x 或 y 为负值，则前面添加 M 表示负号。
           if (x < 0) {
             x = "M" + -x;
           }
@@ -67,8 +77,8 @@
         target: "mapCon",
         layers: [baidu_layer],
         view: new ol.View({
-          center: [0, 0],
-          zoom: 2,
+          center: [12958752, 4848452],
+          zoom: 8,
         }),
       });
     </script>
