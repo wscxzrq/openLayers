@@ -1,0 +1,124 @@
+{
+  "files.eol": "\n",
+  "files.autoSave": "onWindowChange",
+  "git.ignoreMissingGitWarning": true,
+  "explorer.confirmDelete": false,
+  // "workbench.colorTheme": "Monokai",
+  // "workbench.colorCustomizations": {
+  //   "[Monokai]": {
+  //     "editor.background": "#1a2c1c",
+  //     "sideBar.background": "#2a3b2d",
+  //     "activityBar.background": "#7154978a",
+  //     "icon.foreground": "#893ecf",
+  //     "activityBar.inactiveForeground": "#ffee00b4"
+  //   }
+  // },
+  "vsicons.dontShowNewVersionMessage": true,
+  "vetur.validation.template": false,
+  // "prettier.requireConfig": true,
+  // // 强制单引号
+  // "prettier.singleQuote": true,
+  // "prettier.semi": false,
+  // // 尽可能控制尾随逗号的打印
+  // "prettier.trailingComma": "all",
+  // #每次保存的时候自动格式化
+  "editor.formatOnSave": true,
+  "editor.formatOnType": true,
+  // 使用空格缩进
+  "editor.insertSpaces": true,
+  "html.format.indentHandlebars": true,
+  "javascript.preferences.quoteStyle": "single",
+  "typescript.preferences.quoteStyle": "single",
+  "html.format.enable": false,
+  "html.format.preserveNewLines": false,
+  "diffEditor.ignoreTrimWhitespace": false,
+  "eslint.validate": [
+    "typescript",
+    "typescriptreact",
+    "javascript",
+    "javascriptreact",
+    "html",
+    "vue",
+    "vue-html",
+    "css",
+    "scss",
+    "less",
+    "json",
+    "jsonc",
+    "json5",
+    "markdown"
+  ],
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit", //#每次保存的时候将代码按eslint格式进行修复
+    "source.fixAll.stylelint": "explicit" // 开启 Stylelint 保存自动检测
+  },
+  // Stylelint 校验文件
+  "stylelint.validate": [
+    "vue",
+    "html"
+  ],
+  //禁用css/less/scss的校验
+  "css.validate": false,
+  "less.validate": false,
+  "scss.validate": false,
+  "eslint.format.enable": true,
+  //防止VSCode启动带有node_modules的项目的时候很卡的问题
+  "search.followSymlinks": false,
+  // 在使用搜索功能时，将这些文件夹/文件排除在外
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/pnpm-lock.yaml": true,
+    "**/package-lock.json": true,
+    "**/.DS_Store": true,
+    "**/.git": true,
+    "**/.gitignore": true,
+    "**/.idea": true,
+    "**/.svn": true,
+    "**/.vscode": true,
+    "**/build": true,
+    "**/dist": true,
+    "**/tmp": true,
+    "**/yarn.lock": true
+  },
+  //窗体缩放级别
+  "window.zoomLevel": 0.5,
+  //丝滑打字配置
+  "editor.smoothScrolling": true,
+  "editor.cursorBlinking": "expand",
+  "editor.cursorSmoothCaretAnimation": "on",
+  "workbench.list.smoothScrolling": true,
+  //鼠标控制大小
+  "editor.mouseWheelZoom": false,
+  // 彩虹括号与作用域块线条提示
+  "editor.guides.bracketPairs": true,
+  "editor.bracketPairColorization.enabled": true,
+  // 更加智能的代码提示
+  // 控制活动代码段是否阻止快速建议
+  "editor.suggest.snippetsPreventQuickSuggestions": true,
+  // 除了 `Tab` 键以外， `Enter` 键是否同样可以接受建议
+  // 这能减少“插入新行”和“接受建议”命令之间的歧义
+  "editor.acceptSuggestionOnEnter": "smart", // 代码补全列表中，优先选择最近的建议
+  "editor.suggestSelection": "recentlyUsedByPrefix",
+  // 自动补全括号、引号
+  "editor.autoClosingBrackets": "beforeWhitespace",
+  "editor.autoClosingDelete": "always",
+  "editor.autoClosingOvertype": "always",
+  "editor.autoClosingQuotes": "beforeWhitespace",
+  // 关闭缩进猜测
+  "editor.detectIndentation": false,
+  "editor.tabSize": 2,
+  "editor.wordWrap": "off",
+  "editor.wordWrapColumn": 200,
+  "editor.lineHeight": 1.5,
+  // 文件夹紧凑模式
+  "explorer.compactFolders": true,
+  "notebook.compactView": true,
+  //Typescript 语言设置中文
+  "typescript.locale": "zh-CN",
+  // 枚举类型数值提示
+  "typescript.inlayHints.enumMemberValues.enabled": true,
+  //关闭开屏 VSCode 的亲切问候
+  "workbench.startupEditor": "none",
+  // 父级自动吸附置顶
+  "editor.stickyScroll.enabled": true
+}
