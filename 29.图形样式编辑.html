@@ -68,16 +68,19 @@
       }
     </style>
     <script type="text/javascript">
+      // 地图上的矢量图层，分别用来显示点 线 区
       var vectorPoints, vectorLines, vectorPolygons;
+      // openLayers 上的 Feature对象，分别用来表示点、线和多边形
       var pointFeature, lineFeature, polygonFeature;
       var myDom;
 
       function init() {
-        //绘制的几何图形要素
+        // 创建一个点几何体，并设置其坐标 设置该要素的名称为 Point Feature
         pointFeature = new ol.Feature({
           geometry: new ol.geom.Point([114.1947, 30.5255]),
           name: "Point Feature",
         });
+        // 创建一个线几何体，并设置其起点与终点，设置名称
         lineFeature = new ol.Feature({
           geometry: new ol.geom.LineString([
             [114.2218, 30.5695],
@@ -85,6 +88,7 @@
           ]),
           name: "Line Feature",
         });
+        // 创建一个多边形几何体，并定义其顶点坐标 这组坐标形成一个闭合的路径 设置其名字
         polygonFeature = new ol.Feature({
           geometry: new ol.geom.Polygon([
             [
@@ -146,23 +150,35 @@
         };
 
         //分别实例化点、线、区图层对象
+        // 创建点的矢量图层，
         vectorPoints = new ol.layer.Vector({
+          // 数据源
           source: new ol.source.Vector({
+            // 使用刚刚创建的点作为图层的唯一要素
             features: [pointFeature],
           }),
+          // 指定点的样式
           style: createPointStyleFunction(),
         });
 
+        // 创建线的矢量图层，
         vectorLines = new ol.layer.Vector({
+          // 数据源
           source: new ol.source.Vector({
+            // 使用刚刚创建的线作为图层的唯一要素
             features: [lineFeature],
           }),
+          // 指定线的样式
           style: createLineStyleFunction(),
         });
+        // 创建多边形的矢量图层，
         vectorPolygons = new ol.layer.Vector({
+          // 数据源
           source: new ol.source.Vector({
+            // 使用刚刚创建的多边形作为图层的唯一要素
             features: [polygonFeature],
           }),
+          // 指定多边形的样式
           style: createPolygonStyleFunction(),
         });
 
@@ -172,19 +188,21 @@
             new ol.layer.Tile({
               title: "天地图矢量图层",
               source: new ol.source.XYZ({
-                url: "http://t0.tianditu.com/DataServer?T=vec_w&x={x}&y={y}&l={z}&tk=3bc6874f2b919aa581635abab7759a3f",
+                url: "http://t0.tianditu.com/DataServer?T=vec_w&x={x}&y={y}&l={z}&tk=c3e13f43d5f380c070aaff0b2920fae8",
                 wrapX: false,
               }),
             }),
             new ol.layer.Tile({
               title: "天地图矢量图层注记",
               source: new ol.source.XYZ({
-                url: "http://t0.tianditu.com/DataServer?T=cva_w&x={x}&y={y}&l={z}&tk=3bc6874f2b919aa581635abab7759a3f",
+                url: "http://t0.tianditu.com/DataServer?T=cva_w&x={x}&y={y}&l={z}&tk=c3e13f43d5f380c070aaff0b2920fae8",
                 attributions: "天地图的属性描述",
                 wrapX: false,
               }),
+              // 提前加载瓦片以提升其平滑度
               preload: Infinity,
             }),
+            // 之前创建的点、线、多边形图层也添加到 map 对象中
             vectorPoints,
             vectorLines,
             vectorPolygons,
