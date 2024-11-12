@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>视图联动示例</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="https://openlayers.org/en/v5.3.0/css/ol.css" />
+    <!-- <script
+      type="text/javascript"
+      src="https://openlayers.org/en/v5.3.0/build/ol.js"
+    ></script> -->
+    <!-- <script src="../../libs/ol5/ol.js" type="text/javascript"></script> -->
+    <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@latest/en/v6.15.1/build/ol.js"></script>
+    <style>
+      body {
+        margin: 0px;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        position: absolute;
+      }
+
+      .container {
+        display: inline-block;
+        width: 40%;
+        height: 80%; /*600px;*/
+        padding: 10px;
+      }
+
+      .map {
+        display: inline-block;
+        background: #f8f4f0;
+        width: 100%;
+        height: 95%;
+        border: 1px dashed #ff0000;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <lable>Canvas</lable>
+      <div id="canvasMap" class="map"></div>
+    </div>
+    <div class="container">
+      <lable>WebGL</lable>
+      <div id="webglMap" class="map"></div>
+    </div>
+    <script>
+      if (!window.WebGLRenderingContext) {
+        console.error("当前浏览器不支持 WebGL.");
+      } else {
+        const canvas = document.createElement("canvas");
+        const gl =
+          canvas.getContext("webgl") || canvas.getContext("experimental-webgl");
+        if (!gl) {
+          console.error("无法初始化 WebGL 上下文.");
+        }
+      }
+      //加载canvas渲染模式的地图做为主图,默认是canvas渲染模式
+      var canvasMap = new ol.Map({
+        layers: [
+          new ol.layer.Tile({
+            title: "天地图矢量图层",
+            source: new ol.source.XYZ({
+              url: "http://t0.tianditu.com/DataServer?T=vec_w&x={x}&y={y}&l={z}&tk=3bc6874f2b919aa581635abab7759a3f",
+              wrapX: false,
+            }),
+          }),
+          new ol.layer.Tile({
+            title: "天地图矢量图层注记",
+            source: new ol.source.XYZ({
+              url: "http://t0.tianditu.com/DataServer?T=cva_w&x={x}&y={y}&l={z}&tk=3bc6874f2b919aa581635abab7759a3f",
+              wrapX: false,
+            }),
+          }),
+        ],
+        target: "canvasMap", //地图容器div的ID
+        view: new ol.View({
+          center: [12723048, 3575638], //地图初始中心点
+          minZoom: 2,
+          zoom: 6,
+        }),
+      });
+
+      var webglMap = new ol.Map({
+        view: canvasMap.getView(),
+        layers: [
+          new ol.layer.WebGLTile({
+            title: "天地图矢量图层",
+            source: new ol.source.XYZ({
+              url: "http://t3.tianditu.com/DataServer?T=img_w&x={x}&y={y}&l={z}&tk=d0cf74b31931aab68af181d23fa23d8d",
+              crossOrigin: "anonymous",
+              wrapX: false,
+            }),
+          }),
+          new ol.layer.Tile({
+            title: "天地图矢量图层注记",
+            source: new ol.source.XYZ({
+              url: "http://t0.tianditu.com/DataServer?T=cva_w&x={x}&y={y}&l={z}&tk=3bc6874f2b919aa581635abab7759a3f",
+              wrapX: false,
+            }),
+          }),
+        ],
+        target: "webglMap", //地图容器div的ID
+      });
+    </script>
+  </body>
+</html>

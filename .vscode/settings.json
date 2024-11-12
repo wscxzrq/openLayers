@@ -120,5 +120,6 @@
   //关闭开屏 VSCode 的亲切问候
   "workbench.startupEditor": "none",
   // 父级自动吸附置顶
-  "editor.stickyScroll.enabled": true
+  "editor.stickyScroll.enabled": true,
+  "liveServer.settings.port": 5502
 }
